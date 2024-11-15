@@ -14,20 +14,20 @@ const Navbar = () => {
   
   <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/' >Home</NavLink>
 
-  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='AllTouristSpot' >All-TouristSpot</NavLink>
+  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/product' >Product</NavLink>
 
 
-  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/OurTouristSpot' >Our-TouristSpot</NavLink>
+  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/about' >About</NavLink>
 
 
-  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/BookingSpot' >Booking Spot</NavLink>
+  <NavLink className={({isActive})=>isActive? 'font-semibold text-green-400  hover:text-orange-400': 'font-semibold'} to='/contact-us' >Contact Us</NavLink>
 
   
      
   </>
     return (
         <div>
-            <div className="navbar fixed z-10 bg-opacity-30 max-w-6xl mx-auto text-white bg-black">
+            <div className="navbar fixed z-10 bg-opacity-30 mx-auto text-white bg-black">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,7 +52,7 @@ const Navbar = () => {
         }
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">Our Travel</a>
+    <a className="btn btn-ghost text-xl">Gadget Shop</a>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 gap-6">
