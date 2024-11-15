@@ -1,12 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { FaEye ,FaEyeSlash } from 'react-icons/fa';
 import Swal from 'sweetalert2'
+import axios from "axios";
 // import { Helmet } from "react-helmet-async";
 
 const Register = () => {
   const {createUser,updateUserProfile} = useContext(AuthContext);
+  const navigate = useNavigate();
   
     const [registerError, setRegisterError] = useState('');
     const [showPassword,setShowPassword] = useState(false);
@@ -20,8 +22,12 @@ const Register = () => {
         const photo = from.get('photo');
         const email = from.get('email');
         const password = from.get('password');
-        const role = from.get('role')
-        console.log(name,photo,email,password,role);
+        const role = from.get('role');
+
+        const status = role === "buyer" ? "approved" : "pending";
+        const wishlist = [];
+        const userData = {name,photo,email,password,role,status,wishlist};
+        console.log(userData);
 
         setRegisterError('')
         if(password.length < 6){
@@ -40,14 +46,20 @@ const Register = () => {
         createUser(email,password)
     .then( () => {
 
-      "/"
-      Swal.fire({
+      axios.post("http://localhost:4000/users", userData).then((res)=>{
+        console.log(res.data)
+       if(res.data.insertedId){
+        Swal.fire({
             
-        icon: "success",
-        title: "Register successfully",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+          icon: "success",
+          title: "Register successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+       navigate("/")
+       }
+      })
+      
       
       
       updateUserProfile(name,photo)
