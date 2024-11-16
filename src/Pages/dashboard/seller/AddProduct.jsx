@@ -1,7 +1,9 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
 
 const AddProduct = () => {
+    const {user} = useAuth()
     const handleAddProduct = async (event) =>{
         event.preventDefault();
         const from = event.target;
@@ -10,11 +12,12 @@ const AddProduct = () => {
         const brand = from.brand.value;
         const price = from.price.value;
         const stock = from.stock.value;
-        const sellerEmail = from.sellerEmail.value;
+        const image = from.image.value;
+        
         const shortDescription = from.shortDescription.value;
        
 
-        const newProduct = { productTitle,category,brand,price,stock,sellerEmail,shortDescription};
+        const newProduct = { productTitle,category,brand,price,stock,sellerEmail:user.email,shortDescription,image};
         try {
             const token = localStorage.getItem("access-token");
       
@@ -51,7 +54,7 @@ const AddProduct = () => {
 
             <div className="text-center">
                 <h1 className="text-3xl lg:text-4xl mb-4 lg:mb-7 font-bold"> Add product</h1>
-                <p className="text-sm lg:text-base mb-4 lg:mb-6 font-semibold">I love to share creative fun, silly stories, cute kid pictures and some genuine recommendations. I live a balanced and busy life working from home, and sharing.</p>
+               
             </div>
 
             <form onSubmit={handleAddProduct} >
@@ -87,7 +90,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text text-[17px] text-lime-600 font-semibold">Price</span>
                         </label>
-                        <input type="text" placeholder="Price" name="price" className="input input-bordered w-full required" />
+                        <input type="number" placeholder="Price" name="price" className="input input-bordered w-full required" />
                     </div>
 
                 </div>
@@ -101,16 +104,18 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text text-[17px] text-lime-600 font-semibold">Stock</span>
                         </label>
-                        <input type="text" placeholder="Stock" name="stock" className="input input-bordered w-full required" />
+                        <input type="number" placeholder="Stock" name="stock" className="input input-bordered w-full required" />
                     </div>
+
 
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-[17px] text-lime-600 font-semibold">Seller Email</span>
+                            <span className="label-text text-[17px] text-lime-600 font-semibold">Image</span>
                         </label>
-                        <input type="email" placeholder="Seller Email" name="sellerEmail" className="input input-bordered w-full required" />
+                        <input type="number" placeholder="Image" name="image" className="input input-bordered w-full required" />
                     </div>
 
+                   
                 </div>
 
                 <div className="form-control mb-4">
@@ -122,7 +127,7 @@ const AddProduct = () => {
 
                
 
-                <input type="submit" value=" Add Blog" className="btn btn-block mt-4 lg:mt-7 text-white bg-lime-700" />
+                <input type="submit" value=" Add Product" className="btn btn-block mt-4 lg:mt-7 text-white bg-lime-700" />
             </form>
         </div>
     );
