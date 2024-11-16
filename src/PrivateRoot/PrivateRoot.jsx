@@ -11,7 +11,7 @@ const PrivateRoot = ({children}) => {
 
 
     if(loading){
-     return <span className="loading loading-spinner loading-lg ml-[650px]"></span>
+     return <span className="loading loading-spinner loading-lg ml-[650px] mt-10"></span>
     }
 
     if(user){
