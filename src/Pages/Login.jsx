@@ -17,7 +17,7 @@ const Login = () => {
   // const auth = getAuth();
   // const provider = new GoogleAuthProvider()
 
-  const {signIn,GoogleLogin,githubLogin} = useContext(AuthContext);
+  const {Login,GoogleLogin,githubLogin} = useContext(AuthContext);
   const [showPassword,setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const Login = () => {
         const email = from.get('email');
         const password = from.get('password');
         console.log(email,password);
-        signIn(email,password)
+        Login(email,password)
         .then(result =>{
           console.log(result.user);
           navigate(location?.state ? location.state : '/');
