@@ -112,7 +112,7 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text text-[17px] text-lime-600 font-semibold">Image</span>
                         </label>
-                        <input type="number" placeholder="Image" name="image" className="input input-bordered w-full required" />
+                        <input type="text" placeholder="Image" name="image" className="input input-bordered w-full required" />
                     </div>
 
                    
