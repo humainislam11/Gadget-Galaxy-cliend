@@ -2,7 +2,7 @@
 import { FiFilter } from "react-icons/fi";
 import { GrPowerReset } from "react-icons/gr";
 
-const FilterBar = ({setBrand, setCategory,handleReset}) => {
+const FilterBar = ({setBrand, setCategory,handleReset,uniqueBrand,uniqueCategory}) => {
     return (
         <div className="bg-gray-300 h-full min-h-screen p-4">
             <div className="flex items-center gap-1">
@@ -15,23 +15,26 @@ const FilterBar = ({setBrand, setCategory,handleReset}) => {
 
                 <div className="w-full">
                  <select onChange={(e)=> setBrand(e.target.value)} className="p-[10px] w-full border-2 border-black rounded-md">
-                 <option disabled selected>Pick your favorite Simpson</option>
-                <option>Brand</option>
-                <option>Marge</option>
-                <option>Bart</option>
-                <option>Lisa</option>
-                <option>Maggie</option>
+                 
+                <option value="">Brands</option>
+                 {
+                    uniqueBrand.map((brand)=>(
+                        <option key={brand} value={brand}>{brand}</option>
+                    ))
+                 }
                  </select>
                 </div>
 
                 <div className="w-full">
                  <select onChange={(e)=> setCategory(e.target.value)} className="p-[10px] w-full border-2 border-black rounded-md">
-                 <option disabled selected>Pick your favorite Simpson</option>
-                    <option>Category</option>
-                    <option>Marge</option>
-                    <option>Bart</option>
-                    <option>Lisa</option>
-                    <option>Maggie</option>
+                 
+                    <option value="">Category</option>
+                    {
+                        uniqueCategory.map((category)=>(
+                            <option key={category} value={category}>{category}</option>
+                        ))
+                    }
+                    
                  </select>
                 </div>
             </div>

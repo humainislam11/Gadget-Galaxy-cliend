@@ -1,6 +1,29 @@
+/* eslint-disable react/prop-types */
+import axios from "axios";
+import useUserData from "../../hooks/useUserData";
+import Swal from "sweetalert2";
 
 const ProductCard = ({product}) => {
   const {productTitle,category,brand,price,stock,shortDescription,image,sellerEmail} = product;
+
+  const userData = useUserData();
+ const userEmail = userData?.email;
+ console.log(userEmail);
+
+ const handleWishList= async()=>{
+   await axios.patch("http://localhost:4000/wishlist/add", {userEmail: userEmail,
+    productId : product._id
+    }).then((res)=>{
+      if(res.data.modifiedCount){
+        Swal.fire({
+          title: "Success!",
+          text: "Product added to your WishList",
+          icon: "success",
+          confirmButtonText: "Okay",
+        });
+      }
+    })
+ }
     return (
       <div className="  w-[315px] border border-black">
       <figure className=" ">
@@ -25,7 +48,7 @@ const ProductCard = ({product}) => {
         </div>
         <div className="card-actions flex items-center justify-center">
           
-          <button className="btn bg-[#E8E8E8] text-[#BB8506] border-b-4 border-[#BB8506]">Add To WishList</button>
+          <button onClick={handleWishList} className="btn bg-[#E8E8E8] text-[#BB8506] border-b-4 border-[#BB8506]">Add To WishList</button>
         </div>
       </div>
     </div>
