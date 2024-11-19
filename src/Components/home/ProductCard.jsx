@@ -3,7 +3,7 @@ import axios from "axios";
 import useUserData from "../../hooks/useUserData";
 import Swal from "sweetalert2";
 
-const ProductCard = ({product,isInWishlist}) => {
+const ProductCard = ({product,isInWishlist ,setLatestData,latestData}) => {
   const {productTitle,category,brand,price,stock,shortDescription,image,sellerEmail} = product;
 
   const userData = useUserData();
@@ -23,7 +23,27 @@ const ProductCard = ({product,isInWishlist}) => {
         });
       }
     })
- }
+ };
+
+
+
+
+ const handleRemoveWishList= async()=>{
+ 
+  await axios.patch("http://localhost:4000/wishlist/remove", {userEmail: userEmail,
+   productId : product._id
+   }).then((res)=>{
+     if(res.data.modifiedCount){
+       Swal.fire({
+         title: "Success!",
+         text: "Product Remove from your WishList",
+         icon: "success",
+         confirmButtonText: "Okay",
+       });
+       setLatestData(!latestData);
+     }
+   })
+}
     return (
       <div className="  w-[315px] border border-black">
       <figure className=" ">
@@ -49,7 +69,7 @@ const ProductCard = ({product,isInWishlist}) => {
         <div className="card-actions flex items-center justify-center">
           
          {
-          isInWishlist ? ( <button className="btn bg-red-500 font-bold text-white">Remove From WishList</button>)
+          isInWishlist ? ( <button onClick={handleRemoveWishList} className="btn bg-red-500 font-bold text-white">Remove From WishList</button>)
           : (
             <button onClick={handleWishList} className="btn bg-[#E8E8E8] text-[#BB8506] border-b-4 border-[#BB8506]">Add To WishList</button>
           )

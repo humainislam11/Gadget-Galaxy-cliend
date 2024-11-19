@@ -7,6 +7,7 @@ import Loading from "../../Loading";
 const MyWishList = () => {
     const [wishlist,setWishlist] = useState([]);
     const userData = useUserData();
+    const [latestData , setLatestData] = useState(true)
     const [loading,setLoading] = useState(false)
     const token = localStorage.getItem('access-token')
     useEffect(()=>{
@@ -21,7 +22,7 @@ const MyWishList = () => {
     if(userData?._id && token){
         fetchWishlist()
     }
-    },[token,userData?._id]);
+    },[token,userData?._id, latestData]);
     return (
         <div>
             <h1 className="text-2xl text-center font-bold mb-6">My WishList</h1>
@@ -32,7 +33,7 @@ const MyWishList = () => {
                     wishlist.length > 0?
                      <div  className="grid lg:grid-cols-3">{ 
                         wishlist.map((product)=>
-                        <ProductCard key={product._id} product={product} isInWishlist></ProductCard>)
+                        <ProductCard key={product._id} product={product} isInWishlist setLatestData={setLatestData} latestData></ProductCard>)
                     }
                         </div>
                       : 
