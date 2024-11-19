@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { GrOverview } from "react-icons/gr";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaRegHeart } from "react-icons/fa";
 import { CiLogout } from "react-icons/ci";
 import useUserData from "../../hooks/useUserData";
 import { MdInventory } from "react-icons/md";
@@ -20,7 +20,16 @@ const sellerRouter = [
     title: "Add Product",
     icon: <IoMdAddCircle />,
   },
+
 ];
+const buyerRoute = [
+  {id:1,
+   route: "/dashboard/myWishlist",
+   title: "My WishList",
+   icon: <FaRegHeart />
+
+  }
+]
 
 const Sidebar = () => {
     const navigate = useNavigate()
@@ -49,6 +58,20 @@ const Sidebar = () => {
         </li>
         {userData?.role === "seller" &&
           sellerRouter.map((route) => (
+            <li key={route.id} className="p-2 border border-black rounded-md font-semibold">
+              <NavLink
+                to={route.route}
+                className="flex items-center gap-2"
+                activeClassName="text-blue-500"
+              >
+                {route.icon}
+                <p>{route.title}</p>
+              </NavLink>
+            </li>
+          ))}
+
+        {userData?.role === "buyer" &&
+          buyerRoute.map((route) => (
             <li key={route.id} className="p-2 border border-black rounded-md font-semibold">
               <NavLink
                 to={route.route}

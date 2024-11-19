@@ -3,7 +3,7 @@ import axios from "axios";
 import useUserData from "../../hooks/useUserData";
 import Swal from "sweetalert2";
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product,isInWishlist}) => {
   const {productTitle,category,brand,price,stock,shortDescription,image,sellerEmail} = product;
 
   const userData = useUserData();
@@ -48,7 +48,12 @@ const ProductCard = ({product}) => {
         </div>
         <div className="card-actions flex items-center justify-center">
           
-          <button onClick={handleWishList} className="btn bg-[#E8E8E8] text-[#BB8506] border-b-4 border-[#BB8506]">Add To WishList</button>
+         {
+          isInWishlist ? ( <button className="btn bg-red-500 font-bold text-white">Remove From WishList</button>)
+          : (
+            <button onClick={handleWishList} className="btn bg-[#E8E8E8] text-[#BB8506] border-b-4 border-[#BB8506]">Add To WishList</button>
+          )
+         }
         </div>
       </div>
     </div>

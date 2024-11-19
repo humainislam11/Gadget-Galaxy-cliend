@@ -12,6 +12,8 @@ import PrivateRoot from "../PrivateRoot/PrivateRoot";
 import SellerRoute from "../PrivateRoot/SellerRoute";
 import MyProduct from "../Pages/dashboard/seller/MyProduct";
 import AddProduct from "../Pages/dashboard/seller/AddProduct";
+import BuyerRoute from "../PrivateRoot/BuyerRoute";
+import MyWishList from "../Pages/dashboard/buyer/MyWishList";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +47,11 @@ export const router = createBrowserRouter([
         {
           path: '/dashboard/overview',
           element: <Overview></Overview>
+        },
+        /////buyer route
+        {
+          path: '/dashboard/myWishlist',
+          element: <BuyerRoute><MyWishList></MyWishList></BuyerRoute>
         },
         ////seller route
         {
