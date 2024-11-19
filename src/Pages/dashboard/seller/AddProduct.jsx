@@ -22,7 +22,7 @@ const AddProduct = () => {
             const token = localStorage.getItem("access-token");
       
             const response = await axios.post(
-              "http://localhost:4000/addProduct",
+              "https://gadget-shop-sarver.vercel.app/addProduct",
               newProduct,
               {
                 headers: {

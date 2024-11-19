@@ -26,7 +26,7 @@ const Product = () => {
             setLoading(true);
             try {
                 const response = await axios.get(
-                    `http://localhost:4000/allProduct?productTitle=${search}&page=${page}&limit=${9}&sort=${sort}&brand=${brand}&category=${category}`
+                    `https://gadget-shop-sarver.vercel.app/allProduct?productTitle=${search}&page=${page}&limit=${9}&sort=${sort}&brand=${brand}&category=${category}`
                 );
 
                 console.log("Fetched data:", response.data);

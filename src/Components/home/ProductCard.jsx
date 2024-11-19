@@ -11,7 +11,7 @@ const ProductCard = ({product,isInWishlist ,setLatestData,latestData}) => {
  console.log(userEmail);
 
  const handleWishList= async()=>{
-   await axios.patch("http://localhost:4000/wishlist/add", {userEmail: userEmail,
+   await axios.patch("https://gadget-shop-sarver.vercel.app/wishlist/add", {userEmail: userEmail,
     productId : product._id
     }).then((res)=>{
       if(res.data.modifiedCount){
@@ -30,7 +30,7 @@ const ProductCard = ({product,isInWishlist ,setLatestData,latestData}) => {
 
  const handleRemoveWishList= async()=>{
  
-  await axios.patch("http://localhost:4000/wishlist/remove", {userEmail: userEmail,
+  await axios.patch("https://gadget-shop-sarver.vercel.app/wishlist/remove", {userEmail: userEmail,
    productId : product._id
    }).then((res)=>{
      if(res.data.modifiedCount){

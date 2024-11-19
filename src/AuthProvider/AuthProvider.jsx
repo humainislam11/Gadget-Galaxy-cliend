@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {  // corrected 'Children' to 'children'
             console.log('User in auth state changed:', currentUser);
             setUser(currentUser);
             if(currentUser){
-                 axios.post(`http://localhost:4000/authentication`,{email:currentUser.email,}).then(data=>{
+                 axios.post(`https://gadget-shop-sarver.vercel.app/authentication`,{email:currentUser.email,}).then(data=>{
                     if(data.data){
                         localStorage.setItem('access-token',data?.data?.token);
                         setLoading(false);

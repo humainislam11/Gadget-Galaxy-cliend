@@ -13,7 +13,7 @@ const MyWishList = () => {
     useEffect(()=>{
     const fetchWishlist = async()=>{
         setLoading(true)
-        await axios.get(`http://localhost:4000/wishlist/${userData?._id}`,{
+        await axios.get(`https://gadget-shop-sarver.vercel.app/wishlist/${userData?._id}`,{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -33,7 +33,7 @@ const MyWishList = () => {
                     wishlist.length > 0?
                      <div  className="grid lg:grid-cols-3">{ 
                         wishlist.map((product)=>
-                        <ProductCard key={product._id} product={product} isInWishlist setLatestData={setLatestData} latestData></ProductCard>)
+                        <ProductCard key={product._id} product={product} isInWishlist={setLatestData} setLatestData={setLatestData} latestData></ProductCard>)
                     }
                         </div>
                       : 
